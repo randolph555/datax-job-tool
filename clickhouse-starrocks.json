@@ -1,0 +1,46 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 1
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "clickhousereader",
+          "parameter": {
+            "username": "default",
+            "password": "qwert",
+            "column": ["*"],
+            "connection": [
+            {
+              "table": ["${r_table}"],
+              "jdbcUrl":["jdbc:clickhouse://127.0.0.102:30771/${r_dbname}"]
+            }
+           ],
+            "preSql": [],
+            "postSql": []
+          }
+        },
+        "writer": {
+          "name": "starrockswriter",
+          "parameter": {
+            "username": "test",
+            "password": "test2024",
+            "column": ["*"],
+            "preSql": ["TRUNCATE table ${w_dbname}.${w_table}"],
+            "connection": [
+              {
+                    "jdbcUrl": "jdbc:mysql://127.0.0.102:9030/${w_dbname}",
+                    "selectedDatabase": "${w_dbname}",
+                    "table": ["${w_table}"]
+              }
+            ],
+            "loadUrl": ["127.0.0.102:8043", "127.0.0.103:8043", "127.0.0.104:8043"]
+          }
+        }
+      }
+    ]
+  }
+}

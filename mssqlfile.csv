@@ -1,0 +1,3 @@
+r_dbname, r_table, w_dbname, w_table
+DFYL_Auction,dbo.test_Employees,test_welly,DFYL_Auction_test_Employees
+DFYL_Auction,cdc.change_tables,test_welly,DFYL_Auction_change_tables
